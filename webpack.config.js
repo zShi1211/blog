@@ -5,7 +5,7 @@ module.exports = {
     entry: {
         main: path.resolve(__dirname, './server')
     },
-    output: {
+    output: { 
         filename: 'server.js'
     },
     target: 'node',
