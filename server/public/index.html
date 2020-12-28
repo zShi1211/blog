@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+
+<body>
+    <h1>Blog</h1>
+    <input type="file">
+    <button id="submit">submit</button>
+    <img src="" alt="">
+    <script>
+        const input = document.querySelector('input')
+        const img = document.querySelector('img')
+        submit.onclick = () => {
+            const fromData = new FormData();
+            fromData.append('image', input.files[0], input.files[0].name)
+            fetch('/api/upload', {
+                method: "POST",
+                body: fromData
+            }).then(resp => resp.json()).then(data => {
+                console.log(data)
+                img.src = data.data
+            }) 
+        }
+    </script>
+</body>
+
+</html>
