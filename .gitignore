@@ -1,4 +1,4 @@
 back/src/.umi
 node_modules
 dist/
-public/upload
+/public/upload
