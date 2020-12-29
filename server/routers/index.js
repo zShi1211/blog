@@ -31,9 +31,9 @@ app.use(koaCompress({
 }))
 
 // 托管静态资源
-// app.use(koaStatic(path.resolve(__dirname, "../public")))
+app.use(koaStatic(path.resolve(__dirname, "../public")))
 // 打包只要要写这个地址
-app.use(koaStatic(path.resolve(__dirname, "./public")))
+// app.use(koaStatic(path.resolve(__dirname, "./public")))
 
 
 //解析请求体
@@ -44,13 +44,8 @@ app.use(async (ctx, next) => {
     try {
         await next();
     } catch (err) {
-        if (401 == err.status) {
-            ctx.status = 401;
-            ctx.body = getErrorResult(err.message);
-        } else {
-            ctx.status = 500;
-            ctx.body = getErrorResult(err.message || err)
-        }
+        ctx.status = 200;
+        ctx.body = getErrorResult(err.message || err)
     }
 })
 

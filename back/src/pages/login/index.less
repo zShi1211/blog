@@ -1,0 +1,57 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e6f7ff;
+  background-image: linear-gradient(45deg, rgba(0, 71, 79, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 71, 79, 0.1) 50%, rgba(0, 71, 79, 0.1) 75%, transparent 75%, transparent);
+  background-size: 100vw 100vh;
+  animation: bg 6s infinite linear;
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100vw 100vh;
+  }
+}
+
+
+.fromBox {
+  width: 90vw;
+  max-width: 450px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.picture {
+  position: absolute;
+  width: 200px;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
+
+.toggleIsLogin {
+  display: flex;
+  justify-content: flex-end;
+
+  span {
+    cursor: pointer;
+
+    &:hover {
+      color: #1685a9
+    }
+  }
+}

@@ -43,3 +43,6 @@ back/src/.umi/
 back/src/.umi-production
 back/src/.umi-test
 back/.env.local
+
+
+/upload

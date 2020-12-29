@@ -5,6 +5,7 @@ const koaJwt = require('koa-jwt')
 const JWT = require('jsonwebtoken')
 
 const secret = require('../secret')
+const cipher = '123123'
 
 const adminRouter = new Router();
 
@@ -12,6 +13,9 @@ adminRouter.prefix("/api/admin")
 
 adminRouter.post('/', async ctx => {
     const { body } = ctx.request
+    if (body.cipher !== cipher) {
+        throw new Error('暗号不正确')
+    }
     const res = await addAdmin(body)
     delete res.loginPwd;
     ctx.body = getSendResult(res);
@@ -20,9 +24,12 @@ adminRouter.post('/', async ctx => {
 adminRouter.post('/login', async ctx => {
     const { body } = ctx.request;
     const res = await login(body);
+    console.log(res);
+    if(!res){
+        throw new Error('登录失败')
+    }
     delete res.loginPwd;
     // jwt加密
-    console.log(res)
     const token = JWT.sign({ id: res._id }, secret);
     ctx.set('Authorization', token);
     ctx.body = getSendResult(res);

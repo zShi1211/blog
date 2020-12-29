@@ -7,9 +7,9 @@ const { getSendResult } = require('../utils/getResult')
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        // cb(null, path.resolve(__dirname, "../../public/upload"))
+        cb(null, path.resolve(__dirname, "../../public/upload"))
         // 打包后的地址
-        cb(null, path.resolve(__dirname, "./public/upload"))
+        // cb(null, path.resolve(__dirname, "./public/upload"))
     },
     filename: function (req, file, cb) {
         cb(null, `${file.fieldname}.${Date.now()}${path.extname(file.originalname)}`)
@@ -32,9 +32,7 @@ const upload = multer({
 uploadRouter.prefix('/api/upload')
 
 uploadRouter.post('/', upload.single('image'), ctx => {
-    // const url = path.join(ctx.URL.origin, '/upload', ctx.request.file.filename)
     const url = path.join('/upload', ctx.request.file.filename)
-    console.log(url)
     ctx.body = getSendResult(url);
 })
 

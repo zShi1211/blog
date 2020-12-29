@@ -43,7 +43,7 @@ exports.login = async (loginObj) => {
         throw res;
     }
     const pwd = md5(loginObj.loginPwd);
-    return Admin.findOne({ loginId: loginObj.loginId, loginPwd: pwd }, "-loginPwd")
+    return await Admin.findOne({ loginId: loginObj.loginId, loginPwd: pwd }, "-loginPwd")
 }
 
 // 修改管理员密码

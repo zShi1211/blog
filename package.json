@@ -8,7 +8,7 @@
     "dev:server": "nodemon -w server --exec npm-run-all --serial  dev:server:*",
     "dev:server:build": " cross-env NODE_ENV=production  webpack",
     "dev:server:exec": "node dist/server.js",
-    "dev:client": "npm-run-all -p dev:client:*",
+    "dev:client": "npm-run-all -p dev:client:back",
     "dev:client:front": "cd front && npm run serve",
     "dev:client:back": "cd back && npm start",
     "prod": "npm-run-all -p prod:**",

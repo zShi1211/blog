@@ -1,0 +1,15 @@
+.ant-form-item {
+  justify-content: center;
+}
+
+::-webkit-scrollbar
+{
+    background-color: #fff;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #bfbfbf;
+}
