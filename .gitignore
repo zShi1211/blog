@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+server/public/upload
+back/src/.umi/
 
 
 # local env files
@@ -23,6 +25,7 @@ pnpm-debug.log*
 *.sw?
 
 
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -39,10 +42,7 @@ pnpm-debug.log*
 .DS_Store
 
 # umi
-back/src/.umi/
-back/src/.umi-production
-back/src/.umi-test
-back/.env.local
-
-
-/upload
+/src/.umi
+/src/.umi-production
+/src/.umi-test
+/.env.local
