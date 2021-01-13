@@ -49,7 +49,7 @@ export default {
     td {
       border: 1px solid #0088cc;
       padding: 10px;
-    }
+    } 
     thead {
       background: #0088cc88;
     }
