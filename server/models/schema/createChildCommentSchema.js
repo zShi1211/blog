@@ -9,7 +9,8 @@ module.exports = new Schema({
     from: {
         type: {
             nickName: { type: String, required: true },
-            avatar: { type: String, required: true }
+            avatar: { type: String, required: true },
+            isAdmin: { type: Boolean, default: false }
         },
         required: true
     },

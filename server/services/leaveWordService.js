@@ -4,7 +4,12 @@ const { commentValidate, childCommentValidate } = require('./validate/commentVal
 
 // 分页获取留言
 exports.findLeaveWord = async (page = 1, limit = 10) => {
-    return await LeaveWord.find({}).sort({ time: -1 }).skip((page - 1) * limit).limit(limit);
+    const count = await LeaveWord.countDocuments();
+    const datas = await LeaveWord.find({}).sort({ time: -1 }).skip((page - 1) * limit).limit(limit);
+    return {
+        count,
+        datas
+    }
 }
 
 

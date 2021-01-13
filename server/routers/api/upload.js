@@ -1,15 +1,27 @@
-const Router = require('@koa/router')
+const Router = require('@koa/router');
 const multer = require('@koa/multer');
-const uploadRouter = new Router();
 const path = require('path')
 const { getSendResult } = require('../utils/getResult')
+const uploadRouter = new Router();
+const fs = require('fs');
 
 
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.resolve(__dirname, "../../public/upload"))
+    destination: async function (req, file, cb) {
+        console.log(process.env.NODE_ENV)
+        const filePath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, "./public/upload") : path.resolve(__dirname, "../../public/upload");
+        try {
+            const res = await fs.promises.stat(filePath);
+            // 如果目录存在就但不是一个目录，创建一个目录
+            if (!res.isDirectory()) {
+                await fs.promises.mkdir(filePath)
+            }
+        } catch (error) {
+            // 如果目录不存在就会报错，创建一个目录
+            await fs.promises.mkdir(filePath)
+        }
+        cb(null, filePath)
         // 打包后的地址
-        // cb(null, path.resolve(__dirname, "./public/upload"))
     },
     filename: function (req, file, cb) {
         cb(null, `${file.fieldname}.${Date.now()}${path.extname(file.originalname)}`)
@@ -19,8 +31,7 @@ var storage = multer.diskStorage({
 const upload = multer({
     storage,
     fileFilter(req, file, cb) {
-        const whileList = ['.jpg', '.png', 'jpeg', '.gif', '.webp'];
-        console.log(whileList.includes(path.extname(file.originalname)))
+        const whileList = ['.jpg', '.png', 'jpeg', '.gif', '.webp', '.mp3','jfif'];
         if (whileList.includes(path.extname(file.originalname))) {
             cb(null, true)
         } else {
@@ -31,8 +42,10 @@ const upload = multer({
 
 uploadRouter.prefix('/api/upload')
 
-uploadRouter.post('/', upload.single('image'), ctx => {
-    const url = path.join('/upload', ctx.request.file.filename)
+uploadRouter.post('/', upload.single('file'), ctx => {
+    let url = path.join('/upload', ctx.request.file.filename)
+    //将\转换为/
+    url = url.replace(/\\\\/g, "\\").replace(/\\/g, '\/')
     ctx.body = getSendResult(url);
 })
 

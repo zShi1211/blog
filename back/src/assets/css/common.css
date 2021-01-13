@@ -2,14 +2,20 @@
   justify-content: center;
 }
 
-::-webkit-scrollbar
-{
-    background-color: #fff;
-    width: 8px;
+::-webkit-scrollbar {
+  background-color: #fff;
+  width: 8px;
 }
 
-::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    background-color: #bfbfbf;
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #bfbfbf;
 }
+
+.EasyMDEContainer img {
+  width: 100%;
+  max-width: 700px;
+  object-fit: contain;
+  max-height: 700px;
+}
+

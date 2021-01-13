@@ -24,7 +24,6 @@ adminRouter.post('/', async ctx => {
 adminRouter.post('/login', async ctx => {
     const { body } = ctx.request;
     const res = await login(body);
-    console.log(res);
     if(!res){
         throw new Error('登录失败')
     }

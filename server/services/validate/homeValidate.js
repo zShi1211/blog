@@ -18,7 +18,13 @@ const rule = {
         presence: {
             allowEmpty: false
         }
-    }
+    },
+    bgm: {
+        type: 'string',
+        presence: {
+            allowEmpty: false
+        }
+    },
 }
 
 module.exports = (obj) => {

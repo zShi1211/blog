@@ -25,6 +25,20 @@ exports.updateArticle = async (_id, articleObj) => {
     return await Article.updateOne({ _id }, { ...articleObj })
 }
 
+// 修改一篇文章信息(阅读，喜欢)
+exports.updateArticleInfo = async (_id, type) => {
+    const white = ['like', 'read']
+    if (!white.includes(type)) {
+        throw `不允许修改该字段${type}`;
+    }
+    console.log(0)
+    return await Article.updateOne({ _id }, {
+        $inc: {
+            [type]: 1
+        }
+    })
+}
+
 // 查询一篇文章
 exports.findOneArticle = async (_id) => {
     return await Article.findById(_id, "-comment")
@@ -49,9 +63,11 @@ exports.findComment = async (id, condition = { page: 1, limit: 10 }) => {
     const article = await Article.findById(id, 'comment');
     const count = article.comment.length;
     let datas = []
-    datas = article.comment.slice((condition.page - 1) * condition.limit, condition.limit);
+
+    article.comment.sort((a, b) => b.time - a.time)
+    //手动分页
+    datas = article.comment.slice((condition.page - 1) * condition.limit, condition.limit + (condition.page - 1) * condition.limit);
     // 对评论进行升序
-    datas.sort((a, b) => a.time - b.time)
     return {
         count,
         datas
@@ -84,6 +100,7 @@ exports.addChildComment = async (id, childCommentObj) => {
             "comment.$.childComment": childCommentObj
         }
     })
+
 }
 
 // 删除一条评论

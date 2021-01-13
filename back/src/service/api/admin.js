@@ -1,10 +1,8 @@
 import axios from '../request'
-import { admin } from '../url'
 import defaultAvatar from '../../assets/img/defaultAvatar.png'
-const { login, register, removeSelf, updataInfo, updatePwd, whoami } = admin;
 // 登录
 export const loginReq = async (loginId, loginPwd) => {
-  return axios.post(login, {
+  return axios.post('/admin/login', {
     loginId,
     loginPwd
   })
@@ -12,7 +10,7 @@ export const loginReq = async (loginId, loginPwd) => {
 
 // 注册
 export const registerReq = async (loginId, loginPwd, cipher) => {
-  return axios.post(register, {
+  return axios.post('/admin', {
     loginId,
     loginPwd,
     cipher,
@@ -22,7 +20,7 @@ export const registerReq = async (loginId, loginPwd, cipher) => {
 
 // 删除自己
 export const removeSelfReq = async (loginId, loginPwd, cipher) => {
-  return axios.delete(removeSelf, {
+  return axios.delete('/admin', {
     loginId,
     loginPwd,
     cipher
@@ -31,12 +29,12 @@ export const removeSelfReq = async (loginId, loginPwd, cipher) => {
 
 // 修改信息
 export const updataInfoReq = async (info) => {
-  return axios.put(updataInfo, info)
+  return axios.put('/admin', info)
 }
 
 // 修改密码
 export const updatePwdReq = async (oldPwd, newPwd) => {
-  return axios.put(updatePwd, {
+  return axios.put('/admin/pwd', {
     oldPwd,
     newPwd
   })
@@ -44,5 +42,5 @@ export const updatePwdReq = async (oldPwd, newPwd) => {
 
 // 我是谁
 export const whoamiReq = async () => {
-  return axios.get(whoami)
+  return axios.get('/admin')
 }

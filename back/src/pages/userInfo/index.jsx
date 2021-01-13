@@ -24,7 +24,7 @@ function index({ loginInfo, updataInfo }) {
         <LoadingOutlined /> :
         <div>
           <PlusOutlined />
-          <p>上传图片</p>
+          <p>更换头像</p>
         </div>
       }
     </div>
@@ -37,25 +37,26 @@ function index({ loginInfo, updataInfo }) {
   return (
     <div className={styles.wrapper}>
       <Upload
-        name="image"
+        name="file"
         action="/api/upload"
         className={styles.avatarUploader}
         onChange={handleChange}
         showUploadList={false}
       >
-        <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+        <img src={imageUrl} alt="avatar" />
         {uploadButton}
       </Upload>
 
       <div className={styles.form}>
-        <Input placeholder="用户名" value={loginId} onChange={e => {
+        <Input addonBefore="账号:" placeholder="用户名" value={loginId} onChange={e => {
           setloginId(e.target.value)
-        }} />
-        <Input placeholder="昵称" value={nickName} onChange={e => {
+        }} className={styles.input} />
+        <Input addonBefore="昵称:" placeholder="昵称" value={nickName} onChange={e => {
           setNickName(e.target.value)
-        }} />
+        }} className={styles.input} />
         <Button type="primary" onClick={async () => {
-          const res = updataInfo(loginId, nickName, imageUrl)
+          console.log(loginId, nickName, imageUrl)
+          const res = await updataInfo(loginId, nickName, imageUrl)
           if (res) {
             message.success('修改成功')
           } else {
@@ -65,7 +66,6 @@ function index({ loginInfo, updataInfo }) {
           修改
       </Button>
       </div>
-
     </div>
   )
 }

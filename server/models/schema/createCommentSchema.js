@@ -6,7 +6,7 @@ const childComment = require('./createChildCommentSchema')
 // 文章评论
 const commentSchema = new Schema({
     content: {
-        type: String, 
+        type: String,
         required: true
     },
     nickName: {
@@ -24,6 +24,10 @@ const commentSchema = new Schema({
     time: {
         type: Date,
         default: Date.now
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 })
 

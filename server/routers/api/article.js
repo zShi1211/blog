@@ -1,6 +1,6 @@
 const Router = require('@koa/router')
 const { addArticle, removeArticle, findManyArticle, updateArticle, findOneArticle, findComment, addComment, addChildComment, removeComment,
-    removeChildComment } = require('../../services/articleService')
+    removeChildComment, updateArticleInfo} = require('../../services/articleService')
 const { getSendResult } = require('../utils/getResult')
 const koaJwt = require('koa-jwt')
 const xssFormat = require('../utils/xssFormat')
@@ -24,6 +24,14 @@ articleRouter.get('/', async ctx => {
     ctx.body = getSendResult(res);
 })
 
+// 修改一篇文章的信息（阅读、点赞）
+articleRouter.put('/:id/info', async ctx => {
+    const { body } = ctx.request
+    const { id } = ctx.params;
+    const res = await updateArticleInfo(id, body.type);
+    ctx.body = getSendResult(res);
+})
+
 // 分页获取文章的评论
 articleRouter.get('/:id/comment', async ctx => {
     const { id } = ctx.params;
@@ -36,6 +44,7 @@ articleRouter.get('/:id/comment', async ctx => {
 })
 
 // 向一篇文章添加一个评论
+// id 为文章的id
 articleRouter.post('/:id/comment', async ctx => {
     let { body } = ctx.request
     const { id } = ctx.params;

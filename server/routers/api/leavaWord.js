@@ -24,7 +24,6 @@ leavaWordRouter.get('/', async ctx => {
 leavaWordRouter.post('/', async ctx => {
     let { body } = ctx.request
     body = xssFormat(body, "content", 'nickName');
-    console.log(body)
     const res = await addLeaveWord(body);
     ctx.body = getSendResult(res);
 })
@@ -36,7 +35,6 @@ leavaWordRouter.post('/:id', async ctx => {
     let { body } = ctx.request
     const { id } = ctx.params;
     body = xssFormat(body, "to", 'nickName', 'content');
-    console.log(body)
     const res = await addChildLeaveWord(id, body);
     ctx.body = getSendResult(res);
 })

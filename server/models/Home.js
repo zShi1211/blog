@@ -15,6 +15,10 @@ const homeSchema = new Schema({
     icp: {
         type: String,
         required: true
+    },
+    bgm: {
+        type: String,
+        require: true
     }
 })
 

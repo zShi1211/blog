@@ -1,0 +1,29 @@
+// 暗夜模式切换
+@mixin transition-bg($bg, $color, $tran) {
+    background-color: $bg;
+    color: $color;
+    transition:  0.7s linear, #{$tran};
+    transition-property: background-color, color;
+}
+
+@mixin light($bg: #fff, $color: #000, $tran: "") {
+    @at-root .light & {
+        @include transition-bg($bg, $color, $tran);
+    }
+}
+
+@mixin dark($bg: #000, $color: #fff, $tran: "") {
+    @at-root .dark & {
+        @include transition-bg($bg, $color, $tran);
+    }
+}
+
+// 点击效果
+@mixin click() {
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    &:active {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+}
