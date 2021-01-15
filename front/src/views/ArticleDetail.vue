@@ -43,11 +43,14 @@
             :addComment="addCommentHandle"
             :addChildComment="addChildCommentHandle"
             titleText="评论列表"
+            successTip="评论成功"
+            errorTip="评论失败"
           />
           <LoadMore :loadMore="loadMore" :isMore="isMore" />
         </div>
       </div>
     </Section>
+    <GoTop />
   </div>
 </template>
 
@@ -64,6 +67,7 @@ import LoadMore from "@/components/LoadMore";
 import ArticleContent from "@/components/ArticleContent";
 import dateFormat from "@/utils/dateFormat";
 import Comment from "@/components/Comment/index";
+import GoTop from "@/components/GoTop";
 
 export default {
   components: {
@@ -72,6 +76,7 @@ export default {
     ArticleContent,
     Comment,
     LoadMore,
+    GoTop,
   },
   data() {
     return {
@@ -172,11 +177,7 @@ export default {
     line-height: 1.5;
   }
 }
-@media (max-width: 768px) {
-  .container {
-    padding: 0 10px;
-  }
-}
+
 
 .v-enter,
 .v-leave-to {

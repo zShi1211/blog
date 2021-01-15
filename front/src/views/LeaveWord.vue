@@ -12,6 +12,7 @@
         <LoadMore :loadMore="loadMore" :isMore="isMore" />
       </div>
     </Section>
+    <GoTop />
   </div>
 </template>
 
@@ -25,12 +26,14 @@ import {
   addLeavaWord,
   addChildLeavaWord,
 } from "@/service/api/leaveWord";
+import GoTop from "@/components/GoTop";
 export default {
   components: {
     Header,
     Section,
     Comment,
     LoadMore,
+    GoTop
   },
   data() {
     return {
@@ -71,7 +74,6 @@ export default {
     async getLeaveWordHandle(isRefresh = false) {
       const res = await getLeavaWord(this.leaveWordPage, this.leaveWordLimit);
       if (res.code === 0) {
-        console.log(!this.leaveWord);
         // 首次加载和评论后刷新重新赋值
         if (isRefresh || !this.leaveWord) {
           this.leaveWord = res.data;
@@ -88,10 +90,5 @@ export default {
 <style scoped lang='scss'>
 .leaveWord {
   margin-top: 80px;
-}
-@media (max-width: 768px) {
-  .leaveWord {
-    padding: 0 10px;
-  }
 }
 </style>

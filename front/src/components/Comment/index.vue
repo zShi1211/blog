@@ -13,7 +13,7 @@
         </span>
         ( {{ comment.count }} )
       </p>
-      <transition-group tag="div">
+      <transition-group tag="div" name="comment">
         <CommentItem
           v-for="item in comment.datas"
           :key="item._id"
@@ -60,6 +60,7 @@ export default {
       replyName: null,
       replyId: "",
       isReplyChildComment: false,
+      scrollClear: null,
     };
   },
   methods: {
@@ -74,8 +75,8 @@ export default {
       this.replyName = info.to;
       this.replyId = info.id;
       this.isReplyChildComment = info.isReplyChildComment;
-      // 让滚动条滚动到文本框
-      this.$scroll2El(this.$refs.commentTextarea);
+      // 让滚动条滚动到文本框，并得到一个清理函数
+      this.scrollClear = this.$scroll2El(this.$refs.commentTextarea);
     },
     async sendComment(info) {
       let res;
@@ -107,6 +108,11 @@ export default {
       return res;
     },
   },
+  destroyed() {
+    if (this.scrollClear) {
+      this.scrollClear();
+    }
+  },
 };
 </script>
 
@@ -122,18 +128,18 @@ export default {
     }
   }
 }
-.v-enter,
-.v-leave-to {
+.comment-enter,
+.comment-leave-to {
   opacity: 0;
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s;
+.comment-enter-active,
+.comment-leave-active {
+  transition: opacity 1s;
 }
 
-.v-enter-to,
-.v-leave {
+.comment-enter-to,
+.comment-leave {
   opacity: 1;
 }
 </style>

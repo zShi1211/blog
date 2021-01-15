@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition name="tip">
     <div :class="type" class="tooltip" v-if="isShow">
       <i class="iconfont icon-dui1" v-if="type === 'success'"></i>
       <i class="iconfont icon-quxiao" v-else></i>
@@ -52,18 +52,18 @@ export default {
   color: rgb(204, 130, 142);
 }
 
-.v-enter,
-.v-leave-to {
+.tip-enter,
+.tip-leave-to {
   opacity: 0;
 }
 
-.v-enter-active,
-.v-leave-active {
+.tip-enter-active,
+.tip-leave-active {
   transition: opacity 0.5s;
 }
 
-.v-enter-to,
-.v-leave {
+.tip-enter-to,
+.tip-leave {
   opacity: 1;
 }
 </style>

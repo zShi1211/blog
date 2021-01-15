@@ -33,7 +33,7 @@
         </Button>
       </div>
       <div class="theme2Picture">
-        <transition-group :duration="500" name="theme">
+        <transition-group :duration="500" name="theme" >
           <svg
             v-if="themeMode === 'dark'"
             key="dark"

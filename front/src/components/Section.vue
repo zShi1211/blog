@@ -12,6 +12,7 @@ export default {};
 .section {
   width: 960px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 @media (max-width: 992px) {
@@ -28,6 +29,7 @@ export default {};
 @media (max-width: 576px) {
   .section {
     width: 100%;
+    padding: 0 15px;
   }
 }
 </style>

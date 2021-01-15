@@ -173,7 +173,7 @@ export default {
       height: 50%;
       align-self: flex-end;
       .description {
-        line-height: 2;
+        line-height: 1.5;
         font-size: 14px;
       }
       .date {

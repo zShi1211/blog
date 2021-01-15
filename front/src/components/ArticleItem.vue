@@ -68,7 +68,7 @@ export default {
   .picture {
     position: relative;
     width: 600px;
-    height: 400px;
+    height: 370px;
     border-radius: 5px;
     overflow: hidden;
     cursor: pointer;
@@ -129,7 +129,7 @@ export default {
   .articleItem {
     .picture {
       width: 420px;
-      height: 300px;
+      height: 280px;
     }
     .content {
       height: 200px;
@@ -166,7 +166,6 @@ export default {
 
 @media (max-width: 576px) {
   .articleItem {
-    padding: 20px;
     .picture {
       width: 100%;
       height: 230px;

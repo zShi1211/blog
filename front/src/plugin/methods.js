@@ -48,9 +48,9 @@ export default Vue => {
             // dom
             const { top } = el.getBoundingClientRect();
             position = top;
-        } else if (el instanceof Number) {
+        } else if (typeof el ===  'number' && !isNaN(el)) {
             // 数字
-            position = el
+            position = el - window.scrollY
         } else {
             // Vue实列
             el.$el && (el = el.$el);
@@ -74,5 +74,9 @@ export default Vue => {
             window.scrollBy(0, itemDis)
             count++;
         }, 16)
+        // 返回一个清理函数
+        return () => {
+            clearInterval(timer)
+        }
     }
 }

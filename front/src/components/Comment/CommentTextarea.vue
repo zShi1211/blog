@@ -81,7 +81,7 @@ export default {
     },
     replyPlaceholder() {
       if (!this.replyName) {
-        return "你想说的...";
+        return "说点什么呗...";
       } else {
         return `回复: ${this.replyName}`;
       }
@@ -127,7 +127,6 @@ export default {
       input {
         border: none;
         padding: 10px 0;
-        text-indent: 5px;
         outline: none;
         border-bottom: 2px dotted rgba(204, 204, 204, 0.3);
         width: 100%;
@@ -147,6 +146,7 @@ export default {
       background: #df1d57;
       border-radius: 3px;
       flex-shrink: 0;
+      font-size: 14px;
       color: #fff;
     }
   }
@@ -162,6 +162,8 @@ export default {
       &::placeholder {
         color: #ccc;
         font-size: 14px;
+        font-family: "Constom", "Hiragino Sans GB", "Hiragino Sans GB W3",
+          "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
       }
       &:focus {
         border-bottom: 2px dotted #ccc;
@@ -187,6 +189,7 @@ export default {
       transition: 0.3s;
       color: #5f5f5f;
       outline: none;
+      user-select: none;
       &:hover {
         background: #0084ff;
         color: #eee;
@@ -196,6 +199,9 @@ export default {
       color: #df1d57;
       margin-left: 10px;
       font-size: 12px;
+      .iconfont {
+        vertical-align: -2px;
+      }
     }
   }
 }
