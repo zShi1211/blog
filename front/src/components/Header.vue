@@ -25,17 +25,17 @@
     <div class="mask" v-show="showMenu" @click.self="changeShowMenu"></div>
     <div class="menu" :class="{ show: showMenu }">
       <div class="changeTheme">
-        <Button :onClick="lightMode">
+        <Button :onClick="darkMode">
           <i class="iconfont icon-moonbyueliang"></i>
         </Button>
-        <Button :onClick="darkMode">
+        <Button :onClick="lightMode">
           <i class="iconfont icon-tianqitaiyangqichuang"></i>
         </Button>
       </div>
       <div class="theme2Picture">
-        <transition-group :duration="500" name="theme" >
+        <transition-group :duration="500" name="theme">
           <svg
-            v-if="themeMode === 'dark'"
+            v-if="themeMode === 'light'"
             key="dark"
             t="1609753618605"
             class="icon"
@@ -185,7 +185,6 @@ export default {
         { name: "文章", path: "/article" },
         { name: "留言", path: "/leaveWord" },
         { name: "碎语", path: "/debrisWord" },
-        { name: "看日", path: "/lookSun" },
         { name: "是我", path: "/self" },
       ],
       showMenu: false,
@@ -234,7 +233,7 @@ export default {
       if (this.showMenu) {
         document.documentElement.style.overflow = "hidden";
       } else {
-        document.documentElement.style.overflow = "scroll";
+        document.documentElement.style.overflow = "auto";
       }
     },
     ...mapMutations(["changeThemeMode"]),
@@ -268,6 +267,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/css/common.scss";
 .header-container {
   position: fixed;
   z-index: 998;
@@ -275,9 +275,8 @@ export default {
   left: 0;
   width: 100%;
   height: 50px;
-  background: #000;
-  color: #fff;
-  transition: transform 0.6s;
+  @include light(#f2f4f7, #6e828a, "transform 0.6s");
+  @include dark(#393939, rgb(235, 229, 229), "transform 0.6s");
   transform: translateY(0);
   &.hide {
     transform: translateY(-110%);
@@ -292,7 +291,9 @@ export default {
     .progress {
       position: absolute;
       height: 100%;
-      background: rgba(255, 255, 255, 0.418);
+      @include light(#cde3eb);
+      @include dark(#393e46);
+      background: rgba(255, 255, 255, 0.3);
       top: 0;
       left: 0;
       z-index: -1;
@@ -323,14 +324,14 @@ export default {
     &.show {
       transform: translateX(0);
     }
-    transition: transform 0.3s;
     transform: translateX(100%);
     top: 0;
     right: 0;
     height: 100vh;
     flex-direction: column;
     display: flex;
-    background: #242663;
+    @include light(#ebf0f6, #364e68, "transform 0.3s");
+    @include dark(#364e68, rgb(235, 229, 229), "transform 0.3s");
     .changeTheme {
       display: flex;
       justify-content: space-between;
@@ -357,22 +358,23 @@ export default {
       display: flex;
       flex-direction: column;
       border-radius: 20px 20px 0 0;
-      background: #3d3f77;
       justify-content: space-around;
       font-weight: bold;
       user-select: none;
+      @include light(#f4f4f4, inherit);
+      @include dark(#4d6783, inherit);
       align-items: center;
       li {
         padding: 15px 50px;
         border-radius: 10px;
-        opacity: 0.8;
+        opacity: 0.4;
         transition: opacity 0.3s;
         cursor: pointer;
         &:hover {
           opacity: 1;
         }
         &.router-link-active {
-          background: #6669bd;
+          opacity: 1;
         }
       }
     }
@@ -385,7 +387,7 @@ export default {
 
 .theme-enter-active,
 .theme-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 1s;
 }
 .theme-enter-to,
 .theme-leave {

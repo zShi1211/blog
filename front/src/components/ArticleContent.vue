@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/css/common.scss";
 .articleContent {
   word-break: break-word;
   p {
@@ -45,20 +46,22 @@ export default {
   }
   table {
     width: 100%;
+    @include light(#f5f5f5, inherit);
+    @include dark(#434343, inherit);
     th,
     td {
-      border: 1px solid #0088cc;
+      border: 1px solid #999;
       padding: 10px;
-    } 
+      vertical-align: middle;
+    }
     thead {
-      background: #0088cc88;
+      @include light(#d6e6f2, inherit);
+      @include dark(#4c6983, inherit);
     }
     tbody {
       tr:nth-of-type(2n) {
-        background: rgba(221, 221, 221, 0.253);
-      }
-      tr:hover {
-        background: #0088cc1a;
+        @include light(#d6e6f22a, inherit);
+        @include dark(#d1e9ea27, inherit);
       }
     }
   }

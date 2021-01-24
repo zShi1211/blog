@@ -45,7 +45,7 @@
 import Loading from "@/components/Loading";
 import Nav from "@/components/Nav";
 import { mapActions, mapState } from "vuex";
-import dateFormat from '@/utils/dateFormat'
+import dateFormat from "@/utils/dateFormat";
 
 export default {
   components: {
@@ -124,7 +124,7 @@ export default {
   },
   filters: {
     year(date) {
-      return dateFormat(date)
+      return dateFormat(date);
     },
   },
   destroyed() {
@@ -163,8 +163,8 @@ export default {
   .dask {
     width: 100%;
     height: 100%;
-    @include light(rgba(255, 255, 255, 0.6), #000);
-    @include dark(rgba(0, 0, 0, 0.5), #fff);
+    @include light(rgba(238, 238, 238, 0.5), #222933);
+    @include dark(rgba(57, 62, 70, 0.5), rgb(235, 229, 229));
     clip-path: polygon(0 0, 20% 0, 55% 100%, 0 100%);
     display: flex;
     .content {
@@ -200,7 +200,6 @@ export default {
     right: 15px;
     width: 40px;
     height: 40px;
-    background: #fff;
     border-radius: 50%;
     line-height: 40px;
     text-align: center;
@@ -208,7 +207,8 @@ export default {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: #fff;
+      @include light(#ebe5e5, #222933);
+      @include dark(#393e46, #ebe5e5);
       left: 0;
       border-radius: 50%;
       top: 0;
@@ -219,7 +219,8 @@ export default {
     }
     p {
       position: absolute;
-      background: #fff;
+      @include light(#ebe5e5, #222933, " width 0.8s");
+      @include dark(#393e46, #ebe5e5, " width 0.8s");
       width: 0px;
       white-space: nowrap;
       overflow: hidden;
@@ -227,7 +228,6 @@ export default {
       right: 0%;
       padding-right: 100%;
       border-radius: 20px;
-      transition: width 0.8s;
     }
     &:hover {
       p {

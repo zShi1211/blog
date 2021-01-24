@@ -1,18 +1,22 @@
 <template>
   <div>
-    <Header />
-    <Section>
-      <div class="leaveWord" v-if="leaveWord">
-        <Comment
-          :comment="leaveWord"
-          :addComment="addLeaveWord"
-          :addChildComment="addChildLeaveWord"
-          titleText="留言列表"
-        />
-        <LoadMore :loadMore="loadMore" :isMore="isMore" />
-      </div>
-    </Section>
-    <GoTop />
+    <div class="leaveWord">
+      <Header />
+      <Section>
+        <div v-if="leaveWord">
+          <Comment
+            :comment="leaveWord"
+            :addComment="addLeaveWord"
+            :addChildComment="addChildLeaveWord"
+            titleText="留言列表"
+            successTip="留言成功"
+            errorTip="留言失败"
+          />
+          <LoadMore :loadMore="loadMore" :isMore="isMore" />
+        </div>
+      </Section>
+      <GoTop />
+    </div>
   </div>
 </template>
 
@@ -33,7 +37,7 @@ export default {
     Section,
     Comment,
     LoadMore,
-    GoTop
+    GoTop,
   },
   data() {
     return {
@@ -88,7 +92,10 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+@import "@/assets/css/common.scss";
 .leaveWord {
-  margin-top: 80px;
+  padding-top: 80px;
+  @include light(#fff, #171d20);
+  @include dark(#363434, #fff);
 }
 </style>

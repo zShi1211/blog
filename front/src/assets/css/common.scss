@@ -2,17 +2,16 @@
 @mixin transition-bg($bg, $color, $tran) {
     background-color: $bg;
     color: $color;
-    transition:  0.7s linear, #{$tran};
-    transition-property: background-color, color;
+    transition: background-color 0.7s linear, color 0.7s linear, #{$tran};
 }
 
-@mixin light($bg: #fff, $color: #000, $tran: "") {
+@mixin light($bg: transparent, $color: inherit, $tran: "") {
     @at-root .light & {
         @include transition-bg($bg, $color, $tran);
     }
 }
 
-@mixin dark($bg: #000, $color: #fff, $tran: "") {
+@mixin dark($bg: transparent, $color: inherit, $tran: "") {
     @at-root .dark & {
         @include transition-bg($bg, $color, $tran);
     }

@@ -113,9 +113,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/css/common.scss";
+
 .commentWrapper {
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #393e46;
+  border-radius: 10px;
   padding: 20px;
   margin: 40px 0;
   .top {
@@ -128,15 +130,19 @@ export default {
         border: none;
         padding: 10px 0;
         outline: none;
-        border-bottom: 2px dotted rgba(204, 204, 204, 0.3);
+        border-bottom: 1px dotted rgba(204, 204, 204, 0.3);
+        padding: 3px 2px;
         width: 100%;
+        background: transparent;
         box-sizing: border-box;
+        @include light(null, #171d20);
+        @include dark(null, #fff);
         &::placeholder {
           color: #ccc;
           font-size: 14px;
         }
         &:focus {
-          border-bottom: 2px dotted #ccc;
+          border-color: #ccc;
         }
       }
       max-width: 500px;
@@ -148,6 +154,7 @@ export default {
       flex-shrink: 0;
       font-size: 14px;
       color: #fff;
+      margin-left: 10px;
     }
   }
   .middle {
@@ -155,18 +162,23 @@ export default {
     margin-bottom: 10px;
     textarea {
       border: none;
-      border-bottom: 2px dotted rgba(204, 204, 204, 0.3);
+      border: 1px dotted rgba(204, 204, 204, 0.3);
+      border-radius: 4px;
+      background: transparent;
+      padding: 3px 2px;
       outline: none;
       width: 100%;
+      @include light(transparent, #171d20);
+      @include dark(transparent, #fff);
+      font-family: "Constom", "Hiragino Sans GB", "Hiragino Sans GB W3",
+        "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
       resize: vertical;
       &::placeholder {
         color: #ccc;
         font-size: 14px;
-        font-family: "Constom", "Hiragino Sans GB", "Hiragino Sans GB W3",
-          "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
       }
       &:focus {
-        border-bottom: 2px dotted #ccc;
+        border-color: #ccc;
       }
     }
     .greeting {
@@ -181,18 +193,18 @@ export default {
     display: flex;
     align-items: center;
     button {
-      background: #fff;
+      background: #0084ffdc;
       cursor: pointer;
-      border: 1px solid #ccc;
-      padding: 5px 25px;
+      padding: 7px 25px;
       border-radius: 3px;
-      transition: 0.3s;
-      color: #5f5f5f;
+      transition: 0.7s;
+      color: #eee;
       outline: none;
+      border: none;
       user-select: none;
       &:hover {
         background: #0084ff;
-        color: #eee;
+        color: #fff;
       }
     }
     .errorMessage {

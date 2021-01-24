@@ -1,16 +1,9 @@
 <template>
-  <Button>
-    <router-link tag="h1" to="/">SHIISME</router-link>
-  </Button>
+  <router-link tag="h1" to="/">SHIISME</router-link>
 </template>
 
 <script>
-import Button from "@/components/Button";
-export default {
-  components: {
-    Button,
-  },
-};
+export default {};
 </script>
 
 <style scoped lang="scss">

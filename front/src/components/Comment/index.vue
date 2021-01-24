@@ -28,7 +28,7 @@
 <script>
 import CommentItem from "./CommentItem";
 import CommentTextarea from "./CommentTextarea";
-import tooltip from "@/components/ToolTip";
+import message from "@/components/Message";
 export default {
   components: {
     CommentItem,
@@ -100,10 +100,10 @@ export default {
       }
       // 评论成功后，清空上次评论的信息
       if (res.code === 0) {
-        tooltip("success", this.successTip);
+        message("success", this.successTip);
         this.cancelReply();
       } else {
-        tooltip("error", this.errorTip);
+        message("error", this.errorTip);
       }
       return res;
     },

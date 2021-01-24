@@ -1,56 +1,58 @@
 <template>
   <div>
-    <Header />
-    <Section>
-      <div class="container">
-        <div class="picture">
-          <img :src="articleInfo.picture" alt="" />
-        </div>
-        <div>
-          <div class="title">
-            {{ articleInfo.title }}
+    <div class="articleDetail">
+      <Header :showLike="true" :isLike="isLike" :changeLike="addLike" />
+      <Section>
+        <div class="container">
+          <div class="picture">
+            <img :src="articleInfo.picture" alt="" />
           </div>
-          <div class="info">
-            <div class="date">
-              {{ date }}
+          <div>
+            <div class="title">
+              {{ articleInfo.title }}
             </div>
-            <div class="word">
-              <span>文字</span>
-              <span>
-                {{ articleInfo.words }}
-              </span>
-            </div>
-            <div class="read">
-              <span>阅读</span>
-              <span>
-                {{ articleInfo.read }}
-              </span>
-            </div>
-            <div class="like">
-              <span>喜欢</span>
-              <span>
-                {{ articleInfo.like }}
-              </span>
+            <div class="info">
+              <div class="date">
+                {{ date }}
+              </div>
+              <div class="word">
+                <span>文字</span>
+                <span>
+                  {{ articleInfo.words }}
+                </span>
+              </div>
+              <div class="read">
+                <span>阅读</span>
+                <span>
+                  {{ articleInfo.read }}
+                </span>
+              </div>
+              <div class="like">
+                <span>喜欢</span>
+                <span>
+                  {{ articleInfo.like }}
+                </span>
+              </div>
             </div>
           </div>
+          <div class="content">
+            <ArticleContent :content="articleInfo.contentHtml" />
+          </div>
+          <div v-if="comment">
+            <Comment
+              :comment="comment"
+              :addComment="addCommentHandle"
+              :addChildComment="addChildCommentHandle"
+              titleText="评论列表"
+              successTip="评论成功"
+              errorTip="评论失败"
+            />
+            <LoadMore :loadMore="loadMore" :isMore="isMore" />
+          </div>
         </div>
-        <div class="content">
-          <ArticleContent :content="articleInfo.contentHtml" />
-        </div>
-        <div v-if="comment">
-          <Comment
-            :comment="comment"
-            :addComment="addCommentHandle"
-            :addChildComment="addChildCommentHandle"
-            titleText="评论列表"
-            successTip="评论成功"
-            errorTip="评论失败"
-          />
-          <LoadMore :loadMore="loadMore" :isMore="isMore" />
-        </div>
-      </div>
-    </Section>
-    <GoTop />
+      </Section>
+      <GoTop />
+    </div>
   </div>
 </template>
 
@@ -61,6 +63,7 @@ import {
   getComment,
   addComment,
   addChildComment,
+  updateArticleInfo,
 } from "@/service/api/article";
 import Section from "@/components/Section";
 import LoadMore from "@/components/LoadMore";
@@ -84,6 +87,7 @@ export default {
       comment: null,
       commentPage: 1,
       commentLimit: 5,
+      likes: [],
     };
   },
   async created() {
@@ -92,6 +96,18 @@ export default {
     if (res.code === 0) {
       this.articleInfo = res.data;
     }
+    // 阅读+1
+    await updateArticleInfo(this.$route.params.id, "read");
+    // 获取likes
+    const likes = JSON.parse(window.localStorage.getItem("likes"));
+    // 如果不存在初始化空数组
+    if (!likes) {
+      window.localStorage.setItem("likes", JSON.stringify([]));
+      this.likes = [];
+    } else {
+      this.likes = likes;
+    }
+    // 获取评论
     this.getCommentHanle();
   },
   computed: {
@@ -101,8 +117,19 @@ export default {
     isMore() {
       return this.comment.count > this.comment.datas.length;
     },
+    isLike() {
+      return this.likes.includes(this.$route.params.id);
+    },
   },
   methods: {
+    async addLike() {
+      if (this.isLike) return;
+      const likes = JSON.parse(window.localStorage.getItem("likes"));
+      likes.push(this.$route.params.id);
+      window.localStorage.setItem("likes", JSON.stringify(likes));
+      this.likes = likes;
+      await updateArticleInfo(this.$route.params.id, "like");
+    },
     async addCommentHandle(info) {
       const res = await addComment(this.$route.params.id, info);
       if (res.code === 0) {
@@ -148,8 +175,14 @@ export default {
 </script>
 
 <style scoped  lang='scss'>
+@import "@/assets/css/common.scss";
+
+.articleDetail {
+  padding-top: 60px;
+  @include light(#fff, #171d20);
+  @include dark(#363434, #fff);
+}
 .container {
-  margin: 60px auto 0;
   .picture {
     img {
       width: 100%;
@@ -172,12 +205,12 @@ export default {
 
   .content {
     padding: 20px 0;
-    color: #555;
+    @include light(transparent, #555);
+    @include dark(transparent, #c5ced6);
     font-size: 17px;
     line-height: 1.5;
   }
 }
-
 
 .v-enter,
 .v-leave-to {

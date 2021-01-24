@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/css/common.scss";
 .articleItem {
   display: flex;
   align-items: center;
@@ -73,20 +74,29 @@ export default {
     overflow: hidden;
     cursor: pointer;
     z-index: 1;
-    transition: all 0.3s;
+    background: #000;
+    -webkit-tap-highlight-color: transparent;
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: all 0.7s;
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+        transform: scale(1.04);
+      }
     }
   }
   .content {
     position: relative;
     flex: 1 0 auto;
+    @include light(#fafafa, #3e4c52);
+    @include dark(#2c2c2c, #ccc);
     height: 300px;
-    border: 2px dotted #bbb;
     border-radius: 5px;
     padding: 0 10px 0 40px;
+    border: 1px solid #9a9a9a;
     left: -30px;
     display: flex;
     flex-direction: column;
@@ -102,16 +112,22 @@ export default {
 
     .info {
       display: flex;
-      justify-content: baseline;
+      font-size: 12px;
       color: #bbb;
       div {
         padding: 4px;
       }
       .time {
         margin-right: auto;
-        vertical-align: -4px;
+        vertical-align: -3px;
       }
-      font-size: 12px;
+      .word,
+      .read,
+      .like {
+        span {
+          vertical-align: 1px;
+        }
+      }
     }
   }
 }

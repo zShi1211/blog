@@ -1,24 +1,26 @@
 <template>
   <div>
-    <Header />
-    <Section>
-      <div class="debrisWord" v-if="debrisWord">
-        <div
-          class="debrisWordItem"
-          v-for="item in debrisWord.datas"
-          :key="item._id"
-        >
-          <div class="content">
-            {{ item.content }}
+    <div class="debrisWord">
+      <Header />
+      <Section>
+        <div v-if="debrisWord">
+          <div
+            class="debrisWordItem"
+            v-for="item in debrisWord.datas"
+            :key="item._id"
+          >
+            <div class="content">
+              {{ item.content }}
+            </div>
+            <p class="time">
+              {{ dateFormat(item.time) }}
+            </p>
           </div>
-          <p class="time">
-            {{ dateFormat(item.time) }}
-          </p>
+          <LoadMore :loadMore="loadMore" :isMore="isMore" />
+          <GoTop />
         </div>
-        <LoadMore :loadMore="loadMore" :isMore="isMore" />
-      </div>
-      <GoTop />
-    </Section>
+      </Section>
+    </div>
   </div>
 </template>
 
@@ -73,28 +75,31 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "@/assets/css/common.scss";
 .debrisWord {
-  margin-top: 70px;
+  padding-top: 70px;
   line-height: 1.5;
+  @include light(#c9eff9, #00334e);
+  @include dark(#145374, #f3f9fb);
 }
 .debrisWordItem {
-  background: rgba(235, 171, 171, 0.322);
+  @include light(#f1fafb, inherit);
+  @include dark(#5588a3, inherit);
   padding: 15px 25px;
   margin-bottom: 20px;
   border-radius: 5px;
   &:hover {
-    box-shadow: 0 0 3px 0 rgba(0, 136, 204, 0.561);
+    box-shadow: 0 0 2px 0 rgba(0, 136, 204, 0.561);
   }
 }
 
 .content {
   padding: 10px 0;
-  color: #444;
   word-break: break-word;
   white-space: pre-line;
 }
 .time {
-  color: #999;
+  color: #b1bed5;
   font-size: 12px;
   text-align: right;
 }

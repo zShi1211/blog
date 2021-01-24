@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     goTop() {
-      this.clearFn = this.$scroll2El(0, 800, 0);
+      this.clearFn = this.$scroll2El(0, 600, 0);
     },
   },
   destroyed() {
@@ -44,8 +44,9 @@ export default {
 <style scoped lang='scss'>
 .goTop {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  right: 5px;
+  z-index: 800;
   cursor: pointer;
   .iconfont {
     font-size: 35px;

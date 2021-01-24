@@ -56,7 +56,7 @@ export default {
 .loadMore {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  padding: 20px;
   font-size: 12px;
   color: #777;
 }

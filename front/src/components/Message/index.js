@@ -1,6 +1,6 @@
-import ToolTip from './ToolTip'
+import Message from './Message'
 import Vue from 'vue'
-const V = Vue.extend(ToolTip)
+const V = Vue.extend(Message)
 const messageWrapper = document.createElement('div');
 messageWrapper.classList.add('tip-message');
 document.body.appendChild(messageWrapper)

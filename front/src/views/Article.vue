@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div >
+    <div class="article">
     <Header></Header>
     <div class="articleList" v-if="articleList">
       <Section>
@@ -13,6 +14,8 @@
         <LoadMore :loadMore="loadMore" :isMore="isMore" />
       </Section>
     </div>
+    <GoTop />
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ import { getManyArticle } from "@/service/api/article";
 import Header from "@/components/Header";
 import ArticleItem from "@/components/ArticleItem";
 import LoadMore from "@/components/LoadMore";
+import GoTop from "@/components/GoTop";
 export default {
   data() {
     return {
@@ -43,6 +47,7 @@ export default {
     Header,
     ArticleItem,
     LoadMore,
+    GoTop,
   },
   computed: {
     isMore() {
@@ -64,7 +69,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang='scss' scoped>
+@import "@/assets/css/common.scss";
+
+.article {
+  @include light(#fff, #171d20);
+  @include dark(#363434, #fff);
+}
+
 .articleList {
   padding-top: 60px;
 }

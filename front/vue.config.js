@@ -1,5 +1,7 @@
 const path = require('path')
-console.log(process.env.NODE_ENV)
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+
+
 module.exports = {
   lintOnSave: false,
   outputDir: path.resolve(__dirname, "../dist/public/client"),
@@ -16,5 +18,15 @@ module.exports = {
         changeOrigin: true
       }
     }
+  },
+  configureWebpack: {
+    plugins: [
+      new CompressionWebpackPlugin({
+        filename: "[path].gz",
+        algorithm: "gzip",
+        test: /\.(js|css|json|txt|html|ico|svg)$/i,
+        minRatio: 0.8,
+      })
+    ]
   }
 }

@@ -16,23 +16,16 @@
         >
           <span>{{ item.name }}</span>
         </router-link>
-        <li>
-          <Button :onClick="changeThemeMode">
-            <i
-              class="iconfont icon-moonbyueliang"
-              v-show="themeMode === 'light'"
-            ></i>
-            <i
-              class="iconfont icon-tianqitaiyangqichuang"
-              v-show="themeMode === 'dark'"
-            ></i>
-          </Button>
-          <a href="http://baidu.com" target="_blank">
-            <Button>
-              <i class="iconfont icon-GitHub"></i>
-            </Button>
-          </a>
-        </li>
+        <Button :onClick="changeThemeMode">
+          <i
+            class="iconfont icon-moonbyueliang"
+            v-show="themeMode === 'light'"
+          ></i>
+          <i
+            class="iconfont icon-tianqitaiyangqichuang"
+            v-show="themeMode === 'dark'"
+          ></i>
+        </Button>
       </ul>
       <p class="icp">{{ icp }}</p>
     </div>
@@ -62,7 +55,6 @@ export default {
         { name: "文章", path: "/article" },
         { name: "留言", path: "/leaveWord" },
         { name: "碎语", path: "/debrisWord" },
-        { name: "看日", path: "/lookSun" },
         { name: "是我", path: "/self" },
       ],
       showMenu: false,
@@ -120,10 +112,6 @@ export default {
       }
     }
   }
-  .iconfont {
-    @include light(transparent, #000);
-    @include dark(transparent, #fff);
-  }
 }
 @media (max-width: 576px) {
   .nav {
@@ -152,8 +140,8 @@ export default {
       top: 0;
       right: 0;
       transform: translateX(100%);
-      background-color: #000;
-      transition: transform 0.3s;
+      @include light(#fff, #2c2d34, "transform 0.3s");
+      @include dark(#2c2d34, #fff, "transform 0.3s");
       &.show {
         transform: translateX(0);
       }

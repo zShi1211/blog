@@ -15,7 +15,6 @@ body{
   }
   
   ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
     background-color: #bfbfbf;
   }
 
@@ -28,3 +27,5 @@ body{
     display: flex;
     flex-direction: column;
   }
+
+  

@@ -31,11 +31,6 @@ const routes = [
     component: () => import('@/views/LeaveWord.vue')
   },
   {
-    path: '/lookSun',
-    name: 'lookSun',
-    component: () => import('@/views/LookSun.vue')
-  },
-  {
     path: '/self',
     name: 'self',
     component: () => import('@/views/Self.vue')

@@ -104,6 +104,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+@import "@/assets/css/common.scss";
 .commentWrapper {
   border-bottom: 1px solid rgba(204, 204, 204, 0.3);
   padding: 15px 0px;
@@ -134,6 +135,7 @@ export default {
       .replyText {
         font-size: 12px;
         padding: 0 2px;
+        color: #aaa;
       }
     }
     &:hover {
@@ -182,7 +184,8 @@ export default {
           text-decoration: underline;
           cursor: pointer;
           &:hover {
-            color: #777;
+            @include light(transparent, #777);
+            @include dark(transparent, #ccc);
           }
         }
       }
@@ -191,10 +194,12 @@ export default {
   .content {
     margin-left: 50px;
     font-size: 14px;
-    color: #555;
-    padding-top: 10px;
-    word-break:break-word;
+    @include light(transparent, #555);
+    @include dark(transparent, #bbb);
+    padding-top: 5px;
+    word-break: break-word;
     white-space: pre-line;
+    line-height: 1.5;
   }
   .avatar {
     width: 40px;

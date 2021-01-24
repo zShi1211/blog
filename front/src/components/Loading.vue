@@ -23,7 +23,7 @@ export default {
         if (this.show) {
           document.documentElement.style.overflow = "hidden";
         } else {
-          document.documentElement.style.overflow = "scroll";
+          document.documentElement.style.overflow = "auto";
         }
       },
       immediate: true
