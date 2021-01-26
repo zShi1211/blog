@@ -5,7 +5,7 @@ import { Link } from 'umi'
 import DateFormat from '@/components/DateFormat'
 import useCondition from '../../hooks/useConditionHook'
 
-export default function index() {
+function index() {
 
   const [articles, setArticles] = useState({ count: 0, datas: [] })
   const [loading, setLoading] = useState(false)
@@ -117,3 +117,5 @@ export default function index() {
     </div>
   )
 }
+index.title = "文章列表"
+export default index;

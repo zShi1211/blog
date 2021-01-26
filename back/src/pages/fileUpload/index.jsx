@@ -3,7 +3,7 @@ import { Upload, message, Input } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import styles from './index.less'
 
-export default function index() {
+function index() {
   const [fileUrl, setFileUrl] = useState(null)
   const [loading, setLoading] = useState(false)
   const handleChange = info => {
@@ -47,3 +47,5 @@ export default function index() {
     </div>
   )
 }
+index.title ="文件上传"
+export default index;

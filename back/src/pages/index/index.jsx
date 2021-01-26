@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const audio = new Audio();
 
 
-export default () => {
+const Home = () => {
   const [homeInfo, setHomeInfo] = useState({})
   const [homeEmpty, setHomeEmpty] = useState(false)
   const [paused, setPaused] = useState(audio.paused)
@@ -168,3 +168,5 @@ export default () => {
     </div>
   );
 }
+Home.title = "首页"
+export default Home;

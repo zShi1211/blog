@@ -203,6 +203,7 @@ export default {
     }
     this.audio.src = this.homeInfo.bgm;
     this.audio.loop = true;
+    this.audio.preload = "auto";
     this.audio.addEventListener("loadedmetadata", (e) => {
       this.audioTotalDuration = this.audio.duration;
     });

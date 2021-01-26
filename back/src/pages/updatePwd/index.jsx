@@ -90,4 +90,6 @@ const mapDispatch2Props = dispatch => {
 }
 
 
-export default connect(undefined, mapDispatch2Props)(index)
+const update = connect(undefined, mapDispatch2Props)(index)
+update.title = "修改密码"
+export default update

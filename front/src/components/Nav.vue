@@ -3,7 +3,8 @@
     <div class="logo">
       <Logo />
       <Button :onClick="changeShowMenu" class="menuBtn">
-        <i class="iconfont icon-caidan"></i>
+        <i class="iconfont icon-caidan" v-if="!showMenu"></i>
+        <i class="iconfont icon-guanbi" v-else></i>
       </Button>
     </div>
     <div class="content" :class="{ show: showMenu }">
@@ -82,6 +83,8 @@ export default {
   .logo {
     .menuBtn {
       display: none;
+      font-size: 18px;
+      font-weight: bold;
     }
   }
   .content {

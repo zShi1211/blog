@@ -51,8 +51,8 @@ export default function index({ loginInfo }) {
         <Menu.Item key="/userInfo" icon={<UserOutlined />}>
           <NavLink to="/userInfo">用户信息</NavLink>
         </Menu.Item>
-        <Menu.Item key='/updataPwd' icon={<DatabaseOutlined />} >
-          <NavLink to="/updataPwd">修改密码</NavLink>
+        <Menu.Item key='/updatePwd' icon={<DatabaseOutlined />} >
+          <NavLink to="/updatePwd">修改密码</NavLink>
         </Menu.Item>
         <Menu.Item key="/fileUpload" icon={<UploadOutlined />}>
           <NavLink to="/fileUpload">文件上传</NavLink>

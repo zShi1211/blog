@@ -6,7 +6,7 @@ import blindfold from '@/assets/img/blindfold.58ce423.png'
 import LoginFrom from '@/components/LoginFrom'
 import RegisterFrom from '@/components/RegisterFrom'
 
-export default function index() {
+function index() {
   const [isLogin, setIsLogin] = useState(true)
   const [pictureSrc, setPictureSrc] = useState(normalImg)
   return (
@@ -36,3 +36,5 @@ export default function index() {
     </div>
   )
 }
+index.title ="登录与组测"
+export default  index;

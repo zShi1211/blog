@@ -90,4 +90,6 @@ const mapDispatch2Props = dispatch => {
   }
 }
 
-export default connect(mapState2Props, mapDispatch2Props)(index)
+const update = connect(mapState2Props, mapDispatch2Props)(index)
+update.title = "修改用户信息"
+export default update;

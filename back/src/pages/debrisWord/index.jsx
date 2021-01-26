@@ -6,7 +6,7 @@ import useCondition from '../../hooks/useConditionHook'
 
 const { TextArea } = Input
 
-export default function index() {
+function index() {
   const [addDebrisWordContent, setAddDebrisWordContent] = useState('')
   const [upDateDebrisWordFetchRes, setUpDateDebrisWordFetchRes] = useState({ id: '', content: '' })
   const [debrisWrodFetchRes, setDebrisWrodFetchRes] = useState({ count: 0, datas: [] })
@@ -150,3 +150,5 @@ export default function index() {
     </div>
   )
 }
+index.title = "碎语"
+export default  index;

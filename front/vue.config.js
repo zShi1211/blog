@@ -13,6 +13,7 @@ module.exports = {
         target: 'http://localhost:1211',
         changeOrigin: true
       },
+      // 图片代理
       '/upload/': {
         target: 'http://localhost:1211',
         changeOrigin: true

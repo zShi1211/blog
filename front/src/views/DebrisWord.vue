@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="debrisWord">
+    <Loading :show="loading"/>
+    <div class="debrisWord"  v-if="!loading">
       <Header />
       <Section>
         <div v-if="debrisWord">
@@ -31,18 +32,21 @@ import LoadMore from "@/components/LoadMore";
 import GoTop from "@/components/GoTop";
 import { getManyDebrisWord } from "@/service/api/debrisWord";
 import dateFormat from "@/utils/dateFormat";
+import Loading from "@/components/Loading";
 export default {
   components: {
     Header,
     LoadMore,
     Section,
+    Loading,
     GoTop,
   },
   data() {
     return {
       debrisWord: null,
       page: 1,
-      limit: 5,
+      limit: 8,
+      loading: true
     };
   },
   computed: {
@@ -51,7 +55,8 @@ export default {
     },
   },
   async created() {
-    this.getManyDebrisWordHandle();
+ await   this.getManyDebrisWordHandle();
+ this.loading = false;
   },
   methods: {
     loadMore() {
@@ -78,9 +83,11 @@ export default {
 @import "@/assets/css/common.scss";
 .debrisWord {
   padding-top: 70px;
+  min-height: 100vh;
+  box-sizing: border-box;
   line-height: 1.5;
   @include light(#c9eff9, #00334e);
-  @include dark(#145374, #f3f9fb);
+  @include dark(#145374, #ccc);
 }
 .debrisWordItem {
   @include light(#f1fafb, inherit);
@@ -88,9 +95,6 @@ export default {
   padding: 15px 25px;
   margin-bottom: 20px;
   border-radius: 5px;
-  &:hover {
-    box-shadow: 0 0 2px 0 rgba(0, 136, 204, 0.561);
-  }
 }
 
 .content {

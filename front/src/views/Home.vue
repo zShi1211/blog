@@ -1,42 +1,44 @@
 <template>
-  <div class="wrapper" @mousemove="bgMoveHandle">
-    <Loading :show="show" />
-    <div class="bg">
-      <img
-        :src="this.homeInfo.bgImg"
-        alt=""
-        ref="bgImg"
-        :style="{ transform: `translate(${translateX}px, ${translateY}px)` }"
-      />
-    </div>
-    <div class="dask">
-      <Nav :icp="homeInfo.icp" />
-      <div class="content">
-        <div class="date">
-          <div class="hours" :class="{ active: hours == 12 }">
-            {{ hours }}
+  <div>
+    <Loading :show="loading" />
+    <div class="wrapper" @mousemove="bgMoveHandle" v-if="!loading">
+      <div class="bg">
+        <img
+          :src="this.homeInfo.bgImg"
+          alt=""
+          ref="bgImg"
+          :style="{ transform: `translate(${translateX}px, ${translateY}px)` }"
+        />
+      </div>
+      <div class="dask">
+        <Nav :icp="homeInfo.icp" />
+        <div class="content">
+          <div class="date">
+            <div class="hours" :class="{ active: hours == 12 }">
+              {{ hours }}
+            </div>
+            <div class="date-right">
+              <div class="year">
+                {{ date | year }}
+              </div>
+              <div class="minute" :class="{ active: minute == 12 }">
+                {{ minute }}
+              </div>
+            </div>
           </div>
-          <div class="date-right">
-            <div class="year">
-              {{ date | year }}
-            </div>
-            <div class="minute" :class="{ active: minute == 12 }">
-              {{ minute }}
-            </div>
+          <div class="description">
+            {{ homeInfo.description }}
           </div>
         </div>
-        <div class="description">
-          {{ homeInfo.description }}
+      </div>
+      <div class="icp">
+        <div class="icon">
+          <i class="iconfont icon-beian"></i>
         </div>
+        <p>
+          {{ homeInfo.icp }}
+        </p>
       </div>
-    </div>
-    <div class="icp">
-      <div class="icon">
-        <i class="iconfont icon-beian"></i>
-      </div>
-      <p>
-        {{ homeInfo.icp }}
-      </p>
     </div>
   </div>
 </template>
@@ -54,7 +56,7 @@ export default {
   },
   data() {
     return {
-      show: true,
+      loading: true,
       disWidth: 0,
       disHeight: 0,
       clientWidth: 0,
@@ -81,21 +83,6 @@ export default {
     },
   },
   async created() {
-    if (!this.homeInfo.bgImg) {
-      await this.fetchGetHomeInfo();
-    }
-    const bgImg = new Image();
-    bgImg.src = this.homeInfo.bgImg;
-    bgImg.onload = () => {
-      this.show = false;
-    };
-  },
-  mounted() {
-    this.getDisSize();
-    // 防抖
-    window.onresize = this.$debounce(() => {
-      this.getDisSize();
-    });
     // 设置事件时间定时器
     this.timer = setInterval(() => {
       const newDate = new Date();
@@ -103,6 +90,22 @@ export default {
         this.date = newDate;
       }
     }, 1000);
+    if (!this.homeInfo.bgImg) {
+      await this.fetchGetHomeInfo();
+    }
+    const bgImg = new Image();
+    bgImg.src = this.homeInfo.bgImg;
+    bgImg.onload = () => {
+      this.loading = false;
+      //loading结束后展示内容,因为要获取dom元素,页面渲染后立刻执行$nextTick
+      this.$nextTick(() => {
+        this.getDisSize();
+        // 防抖
+        window.onresize = this.$debounce(() => {
+          this.getDisSize();
+        });
+      });
+    };
   },
   methods: {
     ...mapActions(["fetchGetHomeInfo"]),
@@ -143,7 +146,6 @@ export default {
   position: relative;
   .bg {
     position: fixed;
-    z-index: -1;
     top: 0;
     left: 0;
     width: 100vw;
@@ -154,16 +156,17 @@ export default {
     img {
       flex: none;
       transition: transform 0.1s linear;
-      width: 110vw;
-      height: 110vh;
+      width: 105vw;
+      height: 105vh;
       object-fit: cover;
     }
   }
 
   .dask {
+    position: relative;
     width: 100%;
     height: 100%;
-    @include light(rgba(238, 238, 238, 0.5), #222933);
+    @include light(rgba(238, 238, 238, 0.42), #222933);
     @include dark(rgba(57, 62, 70, 0.5), rgb(235, 229, 229));
     clip-path: polygon(0 0, 20% 0, 55% 100%, 0 100%);
     display: flex;
@@ -182,7 +185,8 @@ export default {
         .minute {
           font-size: 110px;
           &.active {
-            text-shadow: 0 0 10px #ffa940;
+            color: #f50514;
+            text-shadow: 0px 0px 5px #594255;
           }
         }
         .date-right {

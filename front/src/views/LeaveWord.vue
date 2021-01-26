@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="leaveWord">
+    <Loading :show="loading"/>
+    <div class="leaveWord"  v-if="!loading">
       <Header />
       <Section>
         <div v-if="leaveWord">
@@ -31,6 +32,8 @@ import {
   addChildLeavaWord,
 } from "@/service/api/leaveWord";
 import GoTop from "@/components/GoTop";
+import Loading from "@/components/Loading";
+
 export default {
   components: {
     Header,
@@ -38,9 +41,11 @@ export default {
     Comment,
     LoadMore,
     GoTop,
+    Loading
   },
   data() {
     return {
+      loading: true,
       leaveWord: null,
       leaveWordPage: 1,
       leaveWordLimit: 5,
@@ -51,8 +56,9 @@ export default {
       return this.leaveWord.count > this.leaveWord.datas.length;
     },
   },
-  created() {
-    this.getLeaveWordHandle();
+async  created() {
+await    this.getLeaveWordHandle();
+this.loading = false;
   },
   methods: {
     async addLeaveWord(info) {
@@ -95,6 +101,8 @@ export default {
 @import "@/assets/css/common.scss";
 .leaveWord {
   padding-top: 80px;
+  min-height: 100vh;
+  box-sizing: border-box;
   @include light(#fff, #171d20);
   @include dark(#363434, #fff);
 }

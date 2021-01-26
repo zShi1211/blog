@@ -1,6 +1,7 @@
 <template>
   <div >
-    <div class="article">
+    <Loading :show="loading"/>
+    <div class="article" v-if="!loading">
     <Header></Header>
     <div class="articleList" v-if="articleList">
       <Section>
@@ -26,13 +27,16 @@ import Header from "@/components/Header";
 import ArticleItem from "@/components/ArticleItem";
 import LoadMore from "@/components/LoadMore";
 import GoTop from "@/components/GoTop";
+import Loading from "@/components/Loading";
+import defaultImg from "@/assets/img/default.png";
 export default {
   data() {
     return {
+      loading: true,
       articleList: null,
       condition: {
         page: 1,
-        limit: 5,
+        limit: 3,
       },
     };
   },
@@ -41,6 +45,12 @@ export default {
     if (res.code === 0) {
       this.articleList = res.data;
     }
+    //当获取到文章并且默认图片加载完成，就取消loading
+    const img = new Image();
+    img.src = defaultImg;
+    img.onload = () => {
+      this.loading = false;
+    };
   },
   components: {
     Section,
@@ -48,6 +58,7 @@ export default {
     ArticleItem,
     LoadMore,
     GoTop,
+    Loading
   },
   computed: {
     isMore() {
@@ -79,6 +90,8 @@ export default {
 
 .articleList {
   padding-top: 60px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 .article-enter {
   opacity: 0;

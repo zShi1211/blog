@@ -1,5 +1,5 @@
 <template>
-  <div :class="themeMode">
+  <div :class="themeMode" class="root">
     <transition :name="transitionName" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -34,13 +34,22 @@ export default {
       const toDepth = toPath.split("/").length;
       const fromDepth = fromPath.split("/").length;
       this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
-      console.log(this.transitionName)
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/css/common.scss";
+.root{
+  min-height: 100vh;
+}
+.root.light{
+  background: #fff;
+}
+.root.dark{
+  background: #111;
+}
 .slide-left-enter,
 .slide-right-leave-to {
   position: absolute;

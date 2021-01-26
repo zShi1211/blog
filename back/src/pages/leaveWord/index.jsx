@@ -7,7 +7,7 @@ import CommentList from '@/components/CommentList'
 由于该页面与文章评论结构一致
 只需要给数据以及处理函数
 */
-export default function LeavaWordList({ }) {
+ function LeavaWordList({ }) {
   const [commentRes, setCommentRes] = useState(null)
   const [forceRefresh, setForceRefresh] = useState({})
   const [condition, setCondition] = useCondition(1, 5)
@@ -58,3 +58,5 @@ export default function LeavaWordList({ }) {
     }}
   />
 }
+LeavaWordList.title ="留言"
+export default LeavaWordList

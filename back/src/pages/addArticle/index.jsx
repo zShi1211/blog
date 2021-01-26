@@ -4,7 +4,7 @@ import { addArtcile } from '@/service/api/article'
 import { message } from 'antd'
 
 
-export default function index({ history }) {
+ function index({ history }) {
   return <Article addArticleHandle={async (articleState) => {
     const res = await addArtcile(articleState)
     if (res.code === 0) {
@@ -15,3 +15,5 @@ export default function index({ history }) {
     }
   }} />
 }
+index.title ="添加文章"
+export default index

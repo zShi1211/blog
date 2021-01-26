@@ -31,7 +31,6 @@ exports.updateArticleInfo = async (_id, type) => {
     if (!white.includes(type)) {
         throw `不允许修改该字段${type}`;
     }
-    console.log(0)
     return await Article.updateOne({ _id }, {
         $inc: {
             [type]: 1

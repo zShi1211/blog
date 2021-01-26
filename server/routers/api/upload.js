@@ -8,7 +8,6 @@ const fs = require('fs');
 
 var storage = multer.diskStorage({
     destination: async function (req, file, cb) {
-        console.log(process.env.NODE_ENV)
         const filePath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, "./public/upload") : path.resolve(__dirname, "../../public/upload");
         try {
             const res = await fs.promises.stat(filePath);

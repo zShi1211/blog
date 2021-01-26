@@ -47,42 +47,45 @@
             </div>
           </div>
           <div class="line">
-            <router-link to="/" class="item">
-              <Tooltip>
-                <template #tooltipText>
-                  <div>
-                    <i class="iconfont icon-tubiao15"></i>
-                  </div>
-                </template>
-                <template #tooltipMessage>
-                  <span class="message">回到首页</span>
-                </template>
-              </Tooltip>
-            </router-link>
-            <div class="item">
-              <Tooltip>
-                <template #tooltipText>
-                  <div>
-                    <i class="iconfont icon-youxiang"></i>
-                  </div>
-                </template>
-                <template #tooltipMessage>
-                  <span class="message">zshi1211@qq.com</span>
-                </template>
-              </Tooltip>
+            <div class="link">
+              <router-link to="/" class="item">
+                <Tooltip>
+                  <template #tooltipText>
+                    <div>
+                      <i class="iconfont icon-tubiao15"></i>
+                    </div>
+                  </template>
+                  <template #tooltipMessage>
+                    <span class="message">回到首页</span>
+                  </template>
+                </Tooltip>
+              </router-link>
+              <div class="item">
+                <Tooltip>
+                  <template #tooltipText>
+                    <div>
+                      <i class="iconfont icon-youxiang"></i>
+                    </div>
+                  </template>
+                  <template #tooltipMessage>
+                    <span class="message">zshi1211@qq.com</span>
+                  </template>
+                </Tooltip>
+              </div>
+              <a href="http://www.baidu.com" target="_blank" class="item">
+                <Tooltip>
+                  <template #tooltipText>
+                    <div>
+                      <i class="iconfont icon-github"></i>
+                    </div>
+                  </template>
+                  <template #tooltipMessage>
+                    <span class="message">去Github</span>
+                  </template>
+                </Tooltip>
+              </a>
             </div>
-            <a href="www.baidu.com" class="item">
-              <Tooltip>
-                <template #tooltipText>
-                  <div>
-                    <i class="iconfont icon-github"></i>
-                  </div>
-                </template>
-                <template #tooltipMessage>
-                  <span class="message">去Github</span>
-                </template>
-              </Tooltip>
-            </a>
+            <i class="iconfont icon-xia guidance"></i>
           </div>
         </div>
       </div>
@@ -314,29 +317,78 @@ export default {
       .line:nth-of-type(3) {
         animation: fadeIn 2.16s cubic-bezier(0.62, 0.02, 0.34, 1) 0.7s both;
         display: flex;
-        .item {
-          background: #d7eaea;
-          margin-right: 10px;
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          user-select: none;
-          outline: none;
-          transition: 0.5s;
-          &:nth-child(1):hover {
-            background: #0060ca;
-          }
-          &:nth-child(2):hover {
-            background: #f9c535;
-          }
-          &:nth-child(3):hover {
-            background: #333;
+        .guidance.iconfont {
+          font-size: 25px;
+          margin: 0 auto;
+          animation: jump 10s 2s both;
+          @keyframes jump {
+            0% {
+              opacity: 0;
+            }
+            5% {
+              opacity: 1;
+            }
+            10% {
+              transform: translateY(-10px);
+            }
+            20% {
+              transform: translateY(0px);
+            }
+            30% {
+              transform: translateY(-10px);
+            }
+            40% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+            60% {
+              transform: translateY(0px);
+            }
+            70% {
+              transform: translateY(-10px);
+            }
+            80% {
+              transform: translateY(0px);
+            }
+            90% {
+              transform: translateY(-10px);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(0px);
+              opacity: 0;
+            }
           }
         }
+        .link {
+          display: flex;
+          .item {
+            background: #d7eaea;
+            margin-right: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+            transition: 0.5s;
+            &:nth-child(1):hover {
+              background: #0060ca;
+            }
+            &:nth-child(2):hover {
+              background: #f9c535;
+            }
+            &:nth-child(3):hover {
+              background: #333;
+            }
+          }
+        }
+
         .message {
           white-space: nowrap;
         }

@@ -3,7 +3,7 @@ import { updateArticle, getOneArticle } from '../../../service/api/article'
 import Article from '../../../components/Article'
 import { message } from 'antd'
 
-export default function ArticleDetail({ match, history }) {
+function ArticleDetail({ match, history }) {
   const [articleDetail, setArticleDetail] = useState(null)
 
   useEffect(() => {
@@ -25,3 +25,5 @@ export default function ArticleDetail({ match, history }) {
     }
   }} /> : null
 }
+ArticleDetail.title = "文章详情"
+export default ArticleDetail

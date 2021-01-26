@@ -5,7 +5,7 @@ import useCondition from '@/hooks/useConditionHook'
 import CommentList from '@/components/CommentList'
 
 
-export default function comment({ match }) {
+function comment({ match }) {
   const [commentRes, setCommentRes] = useState(null)
   const [forceRefresh, setForceRefresh] = useState({})
   const [condition, setCondition] = useCondition(1, 3)
@@ -54,3 +54,5 @@ export default function comment({ match }) {
     }}
   />
 }
+comment.title = "文章评论"
+export default comment;

@@ -5,7 +5,7 @@
       class="picture"
       tag="div"
     >
-      <img v-lazy:100="articleInfo.picture" src="@/assets/img/1.png" alt="" />
+      <img v-lazy:100="articleInfo.picture" src="@/assets/img/default.png" alt="" />
     </router-link>
     <div class="content">
       <router-link

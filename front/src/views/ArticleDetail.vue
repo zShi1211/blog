@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="articleDetail">
+    <Loading :show="loading" />
+    <div class="articleDetail"  v-if="!loading">
       <Header :showLike="true" :isLike="isLike" :changeLike="addLike" />
       <Section>
         <div class="container">
@@ -71,6 +72,7 @@ import ArticleContent from "@/components/ArticleContent";
 import dateFormat from "@/utils/dateFormat";
 import Comment from "@/components/Comment/index";
 import GoTop from "@/components/GoTop";
+import Loading from "@/components/Loading";
 
 export default {
   components: {
@@ -80,9 +82,11 @@ export default {
     Comment,
     LoadMore,
     GoTop,
+    Loading,
   },
   data() {
     return {
+      loading: true,
       articleInfo: {},
       comment: null,
       commentPage: 1,
@@ -96,6 +100,10 @@ export default {
     if (res.code === 0) {
       this.articleInfo = res.data;
     }
+    // 设置网页title
+    document.title = this.articleInfo.title;
+    // 取消loading
+    this.loading = false;
     // 阅读+1
     await updateArticleInfo(this.$route.params.id, "read");
     // 获取likes
@@ -179,6 +187,9 @@ export default {
 
 .articleDetail {
   padding-top: 60px;
+
+  min-height: 100vh;
+  box-sizing: border-box;
   @include light(#fff, #171d20);
   @include dark(#363434, #fff);
 }
