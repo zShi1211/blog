@@ -1,31 +1,34 @@
 @font-face {
-    font-family: "Constom";
-    src: url("../font/eafont.ttf");
+  font-family: "Constom";
+  src: url("../font/eafont.ttf");
 }
 
-body{
-    font-family: "Constom", "Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+:root{
+  overflow-x: hidden;
 }
 
+body {
+  font-family: "Constom", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
+  /* overflow-x: hidden; */
+}
 
 ::-webkit-scrollbar {
-    background-color: #fff;
-    width: 4px;
-    height: 5px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #bfbfbf;
-  }
+  background-color: #fff;
+  width: 4px;
+  height: 5px;
+}
 
-  .tip-message{
-    position: fixed;
-    width: 100%;
-    top: 80px;
-    pointer-events: none;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: #bfbfbf;
+}
 
-  
+.tip-message {
+  position: fixed;
+  width: 100%;
+  top: 80px;
+  pointer-events: none;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}

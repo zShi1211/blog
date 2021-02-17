@@ -3,7 +3,6 @@ import Layout from '@/components/Layout'
 import '@/assets/css/common.css'
 import Loading from '@/components/Loading'
 import { connect, history } from 'umi'
-import Menu from '../components/Menu'
 
 function index({ loginInfo, loading, children, location }) {
   // 进入登录页就返回登录页

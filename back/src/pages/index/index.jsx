@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Upload, message, Input, Button, Col } from 'antd';
 import styles from './index.less'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';

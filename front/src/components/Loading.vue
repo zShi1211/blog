@@ -21,13 +21,16 @@ export default {
     show: {
       handler() {
         if (this.show) {
-          document.documentElement.style.overflow = "hidden";
+          document.documentElement.style.overflowY = "hidden";
         } else {
-          document.documentElement.style.overflow = "auto";
+          document.documentElement.style.overflowY = "auto";
         }
       },
-      immediate: true
+      immediate: true,
     },
+  },
+  destroyed() {
+    document.documentElement.style.overflowY = "auto";
   },
 };
 </script>

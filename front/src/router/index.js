@@ -50,6 +50,13 @@ const routes = [
       title: 'SHIISME|是我'
     }
   },
+  {
+    path: '*',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      title: 'SHIISME|迷路'
+    }
+  },
 ]
 
 const router = new VueRouter({

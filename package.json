@@ -11,10 +11,10 @@
     "dev:client": "npm-run-all -p dev:client:*",
     "dev:client:front": "cd front && npm run serve",
     "dev:client:back": "cd back && npm start",
-    "prod": "npm-run-all -p prod:**",
-    "prod:server:build": "cross-env NODE_ENV=production  webpack",
-    "prod:client:front": "cd front && npm run build",
-    "prod:client:back": "cd back && npm run build"
+    "build": "npm-run-all -p build:**",
+    "build:server:build": "cross-env NODE_ENV=production  webpack",
+    "build:client:front": "cd front && npm run build",
+    "build:client:back": "cd back && npm run build"
   },
   "author": "",
   "license": "ISC",

@@ -72,7 +72,7 @@
                   </template>
                 </Tooltip>
               </div>
-              <a href="http://www.baidu.com" target="_blank" class="item">
+              <a  target="_blank" class="item">
                 <Tooltip>
                   <template #tooltipText>
                     <div>

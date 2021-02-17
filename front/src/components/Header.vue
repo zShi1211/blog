@@ -232,9 +232,9 @@ export default {
       this.showMenu = !this.showMenu;
       // 显示时阻止屏幕滚动
       if (this.showMenu) {
-        document.documentElement.style.overflow = "hidden";
+        document.documentElement.style.overflowY = "hidden";
       } else {
-        document.documentElement.style.overflow = "auto";
+        document.documentElement.style.overflowY = "auto";
       }
     },
     ...mapMutations(["changeThemeMode"]),
@@ -262,7 +262,7 @@ export default {
     this.audio.pause();
     this.paused = true;
     clearInterval(this.timer);
-    document.documentElement.style.overflow = "scroll";
+    document.documentElement.style.overflowY = "auto";
   },
 };
 </script>

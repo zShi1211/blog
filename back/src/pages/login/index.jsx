@@ -36,5 +36,5 @@ function index() {
     </div>
   )
 }
-index.title ="登录与组测"
+index.title ="登录与注册"
 export default  index;

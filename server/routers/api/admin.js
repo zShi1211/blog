@@ -5,7 +5,7 @@ const koaJwt = require('koa-jwt')
 const JWT = require('jsonwebtoken')
 
 const secret = require('../secret')
-const cipher = '123123'
+const cipher = "c2hpaXNtZQ=="
 
 const adminRouter = new Router();
 

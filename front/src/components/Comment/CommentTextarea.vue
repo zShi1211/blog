@@ -116,7 +116,7 @@ export default {
 @import "@/assets/css/common.scss";
 
 .commentWrapper {
-  border: 1px solid #393e46;
+  border: 1px solid #666;
   border-radius: 10px;
   padding: 20px;
   margin: 40px 0;

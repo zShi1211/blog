@@ -235,7 +235,7 @@ export default {
     }
     &:hover {
       p {
-        width: 150px;
+        width: 180px;
         padding: 0 100% 0 10px;
       }
     }

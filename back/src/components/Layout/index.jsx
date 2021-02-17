@@ -4,6 +4,7 @@ import Menu from '../Menu'
 const { Sider, Content } = Layout
 
 export default function index({ comp, loginInfo }) {
+  console.log(comp)
   return (
     <Layout style={{
       width: '100vw',
