@@ -1,2 +1,2 @@
 // token 密钥
-module.exports = "enNoaQ=="
+module.exports = "你的密钥"
