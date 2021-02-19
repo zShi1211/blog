@@ -16,6 +16,8 @@ const fallbackUtil = require('./utils/fallback')
 
 const app = new Koa();
 
+
+
 // history模式单页应用
 app.use(koaConnect(historyFallback({
     /* 
@@ -52,6 +54,7 @@ app.use(koaStaticCache(staticPath, {
 }))
 
 
+
 //解析请求体
 app.use(bodyParser())
 
@@ -64,6 +67,8 @@ app.use(async (ctx, next) => {
         ctx.body = getErrorResult(err.message || err)
     }
 })
+
+
 
 // 设置路由
 app.use(adminMiddle)

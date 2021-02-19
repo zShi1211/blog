@@ -37,7 +37,9 @@ export default {
       if (res.code === 0) {
         yield put({ type: 'setUserInfo', payload: res.data })
         yield put({ type: 'setLoginedState', payload: true })
+        return true
       }
+      return false
     },
     *updateInfo({ payload }, { call, put }) {
       const res = yield call(updataInfoReq, payload)
@@ -59,7 +61,10 @@ export default {
   subscriptions: {
     initUserInfo: async ({ dispatch, history }) => {
       if (history.location.pathname !== '/login') {
-        dispatch({ type: 'whoami' })
+       const res  = await dispatch({ type: 'whoami' })
+       if(!res){
+         history.push('/login')
+       }
       }
     }
   }

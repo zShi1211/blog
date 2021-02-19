@@ -72,7 +72,7 @@
                   </template>
                 </Tooltip>
               </div>
-              <a  target="_blank" class="item">
+              <a href="https://github.com/zShi1211/blog" target="_blank" class="item">
                 <Tooltip>
                   <template #tooltipText>
                     <div>
