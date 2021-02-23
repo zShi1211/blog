@@ -30,7 +30,8 @@ ui方面就没有很讲究
 
 这里就放一张后台页面图片
 
-<img src="http://shiisme.top/upload/file.1613706433451.png">
+
+![](http://shiisme.top/upload/file.1614087658638.png)
 
 页面详情在[这里](http://www.shiisme.top/admin)
 
